@@ -28,7 +28,34 @@ def crear_mision():
         "fecha": request.form["fecha"],
         "voluntariados_necesarios": request.form["voluntariados_necesarios"],
         "descripcion": request.form["descripcion"],
-        "usuarios_id": request.form["usuarios_id"]
+        "usuarios_id": session["usuario_id"]
     }
     Mision.save(data)
+    return redirect("/dashboard")
+@app.route("/ver/<int:id>")
+def ver_mision(id):
+    if "usuario_id" not in session:
+        return redirect("/")
+    mision = Mision.get_by_id({
+        "id":id
+    })
+    return render_template(
+        "ver_mision.html" ,mision=mision
+    )
+@app.route("/actualizar/<int:id>", methods=["POST"])
+def actualizar(id):
+    data = {
+        "id":  id,
+        "nombre":  request.form["nombre"],
+        "fecha":  request.form["fecha"],
+        "voluntariados_necesarios":  request.form["voluntariados_necesarios"],
+        "descripcion":  request.form["descripcion"],
+    }
+    Mision.updated(data)
+    return redirect("/dashboard")
+@app.route("/borrar/<int:id>")
+def borrar(id):
+    Mision.delete({
+        "id":id
+        })
     return redirect("/dashboard")

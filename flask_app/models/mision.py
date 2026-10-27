@@ -26,7 +26,7 @@ class Mision:
     @classmethod 
     def save(cls,data):
         query  = """INSERT INTO misiones
-        (nombre,fecha,voluntariado_necesarios,descripcion, usuarios_id, created_at,updated_at) VALUES (%(nombre)s, %(fecha)s, %(voluntariados_necesarios)s, %(descripcion)s, %(usuarios_id)s, NOW(), NOW())
+        (nombre,fecha,voluntariados_necesarios,descripcion, usuarios_id, created_at,updated_at) VALUES (%(nombre)s, %(fecha)s, %(voluntariados_necesarios)s, %(descripcion)s, %(usuarios_id)s, NOW(), NOW())
         
         """
         return connectToMySQL(cls.db).query_db(query,data)
@@ -43,8 +43,23 @@ class Mision:
         if len(data["descripcion"]) < 1:
             flash("El descripcion es obligatorio")
             is_valid = False
-        if int(data["voluntariados_necesarios"]) < 2 or 
-        int(data["voluntariados_necesarios"]) > 20:
-        flash("Los v deben ser en 2 y 20")
-        is_valid = False
+        if int(data["voluntariados_necesarios"]) < 2 or int(data["voluntariados_necesarios"]) > 20:
+            flash("Los voluntarios deben ser entre 2 y 20")
+            is_valid = False
+        
         return is_valid
+    @classmethod
+    def get_by_id(cls,data):
+        query = "SELECT * FROM misiones WHERE id  = %(id)s;"
+        resultado = connectToMySQL(cls.db).query_db(query,data)
+        if not resultado: 
+            return None
+        return cls(resultado[0])
+    @classmethod
+    def updated(cls,data):
+        query  = """UPDATE misiones SET nombre(nombre=%(nombre)s, fecha=%(fecha)s, voluntariados_necesarios=%(voluntariados_necesarios)s, descripcion=%(descripcion)s, updated_at=NOW() WHERE id=%(id)s"""
+        return connectToMySQL(cls.db).query_db(query,data)
+    @classmethod 
+    def delete(cls,data):
+        query = "DELETE FROM misiones WHERE id=%(id)s;"
+        return connectToMySQL(cls.db).query_db(query,data)

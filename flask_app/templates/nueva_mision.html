@@ -7,12 +7,13 @@
 </head>
 <body>
     <h1>Nueva mision</h1>
-    <form action="/crear_mision" method="post"></form>
-    <input type="text" name="nombre">
-    <input type="date" name="fecha" id="">
-    <input type="number" name="voluntariados_necesarios"
-    <textarea name="descripcion"></textarea>
-    <button type="submit">Crear</button>
-    <a href="/dashboard">Volver</a>
+    <form action="/crear_mision" method="post">
+        <input type="text" name="nombre">
+        <input type="date" name="fecha" id="">
+        <input type="number" name="voluntariados_necesarios" min="2" max="20" required>
+        <textarea name="descripcion"></textarea>
+        <button type="submit">Crear</button>
+        <a href="/dashboard">Volver</a>
+    </form>
 </body>
 </html>
