@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voluntame</title>
+    <title>Voluntame</title> 
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
 </head>
 <body>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
-    <h1>Registro</h1>
-    <form action="/registro" method="POST">
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" placeholder="Nombre">
-        <br>
-         <label for="nombre">Apellido</label>
-        <input type="text" name="apellido" placeholder="Apellido">
-        <br>
-         <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Email">
-        <br>
-        <label for="password">Contraseña</label>
-        <input type="password" name="password">
-        <br>
-        <label for="password">confirmar password</label>
-        <input type="password" name="confirmar_password">
-        <br>
-        <button type="submit">Registrar</button>
-    </form>
-    <form action="/login" method="post">
-        <input type="email" name="email" placeholder="Email">
-        <br>
-        <input type="password" name="password" placeholder="Contraseña">
-        <br>
-        <button type="submit">Iniciar Sesion</button>
-    </form>
+
+    <section class="todo">
+        <h1>Registro</h1>
+        <div class="div1">
+            <form class="registro" action="/registro" method="POST">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" placeholder="Nombre">
+            <br>
+             <label for="nombre">Apellido</label>
+            <input type="text" name="apellido" placeholder="Apellido">
+            <br>
+             <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Email">
+            <br>
+            <label for="password">Contraseña</label>
+            <input type="password" name="password">
+            <br>
+            <label for="password">confirmar password</label>
+            <input type="password" name="confirmar_password">
+            <br>
+            <button type="submit">Registrar</button>
+        </form>
+        </div>
+        <div>
+           
+          <form class="login" action="/login" method="post">
+             <h2>Inicio sesion</h2>
+            <input type="email" name="email" placeholder="Email">
+            <br>
+            <input type="password" name="password" placeholder="Contraseña">
+            <br>
+            <button type="submit">Iniciar Sesion</button>
+            </form>
+      </div>
+    </section>
 </body>
 </html>

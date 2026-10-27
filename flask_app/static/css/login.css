@@ -1,0 +1,17 @@
+.todo {
+    width: 800px;
+    margin: 50px auto;
+}
+
+.registro{
+    display: inline-block;
+    width: 40%;
+}
+
+ 
+
+input {
+    display: block;
+    margin-bottom: 1px;
+}
+

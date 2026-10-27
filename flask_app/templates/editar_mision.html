@@ -11,8 +11,10 @@
     <form action="/actualizar/{{mision.id}}" method="post">
         <input type="text" name="nombre" value="{{mision.nombre}}">
         <input type="date" name="fecha" value="{{mision.fecha}}">
-        <input type="number" name="" id="">
-
+        <input type="number" value="{{mision.voluntariados_necesarios}}" name="voluntariados_necesarios" id="">
+        <textarea name="descripcion" id="">{{mision.descripcion}}</textarea>
+        <button type="submit">Actualizar</button>
     </form>
+    <a href="/dashboard">Volver</a>
 </body>
 </html>

@@ -56,7 +56,7 @@ class Mision:
             return None
         return cls(resultado[0])
     @classmethod
-    def updated(cls,data):
+    def update(cls,data):
         query  = """UPDATE misiones SET nombre(nombre=%(nombre)s, fecha=%(fecha)s, voluntariados_necesarios=%(voluntariados_necesarios)s, descripcion=%(descripcion)s, updated_at=NOW() WHERE id=%(id)s"""
         return connectToMySQL(cls.db).query_db(query,data)
     @classmethod 
